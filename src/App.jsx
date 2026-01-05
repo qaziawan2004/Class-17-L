@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 import StudentCard from './Components/StudentCard';
 
@@ -9,9 +10,24 @@ function App() {
     { id:  4, name: "Ahmed", rollNo: 4, batch: "WMA 12", favLanguage: "Java" },
     { id: 5 , name: "Meraj", rollNo: 5, batch: "WMA 10", favLanguage: "Urdu" },
   ];
+  let setState = useState(0);
+ let count = setState[0];
+ let setCount = setState[1]; 
+
+function decrease () {
+  setCount (count - 1)
+}
+
+function increase () {
+  setCount(count + 1)
+}
+function reSet () {
+  setCount(0)
+}
 
   return (
-    <div>
+   <>
+   <div>
       {studentData.map((student) => (
         <StudentCard
           key={student.id}
@@ -23,6 +39,13 @@ function App() {
         />
       ))}
     </div>
+    <div> <p>You Clicked: {count}</p>
+    <button onClick={increase} className='bg-green-700 text-white rounded' >Increase!</button>
+    <button onClick={decrease} className='bg-green-700 text-white rounded' >Decrease!</button>
+    <br />
+        <button onClick={reSet} className='bg-green-700 text-white rounded' >Reset!</button>
+        </div>
+ </>    
   );
 }
 
